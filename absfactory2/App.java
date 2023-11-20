@@ -21,9 +21,18 @@ public class App {
         }
         
         String diaDaSemana = getDayOfWeek(args[0]);
+        System.out.println(diaDaSemana);
+
+        if(diaDaSemana.equals("DOM")){
+            System.out.println("Pizzaria Fechada");
+            System.exit(0);
+        }
+
         Pizzaiolo p = new Pizzaiolo(diaDaSemana);
 
         Pizza pizza = p.fazPizza();
+        Calzone calzone = p.fazCalzone();
         pizza.imprimeIngredientes();
+        calzone.imprimeIngredientes();
     }
 }
