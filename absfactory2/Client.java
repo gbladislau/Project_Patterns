@@ -5,8 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-public class App {
+public class Client {
     
+    Pizza pizza;
+    Calzone calzone;
+    Pizzaiolo pizzaiolo;
+
     public static String getDayOfWeek(String data) {
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DayOfWeek dow = DayOfWeek.from(parser.parse(data));
@@ -14,7 +18,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        
+        Client a = new Client();
         if (args.length < 1) {
             System.out.println("USO: java App <dd/mm/yyyy>");
             System.exit(1);
@@ -23,15 +27,19 @@ public class App {
         String diaDaSemana = getDayOfWeek(args[0]);
         System.out.println(diaDaSemana);
 
-        if(diaDaSemana.equals("DOM")){
+        if(diaDaSemana.contains("DOM")){
             System.out.println("Pizzaria Fechada");
             System.exit(0);
         }
 
-        Pizzaiolo p = new Pizzaiolo(diaDaSemana);
+        if (diaDaSemana.contains("SEG") || diaDaSemana.contains("QUA") || diaDaSemana.contains("SEX") ) {
+            a.pizzaiolo = new PizzaioloCalabresa();
+        }else
+            a.pizzaiolo = new PizzaioloPresunto();
 
-        Pizza pizza = p.fazPizza();
-        Calzone calzone = p.fazCalzone();
+
+        Pizza pizza = a.pizzaiolo.fazPizza();
+        Calzone calzone = a.pizzaiolo.fazCalzone();
         pizza.imprimeIngredientes();
         calzone.imprimeIngredientes();
     }
