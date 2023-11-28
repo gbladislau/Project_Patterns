@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-public class Client {
+public class Client_pizza {
     
     Pizza pizza;
     Calzone calzone;
@@ -18,7 +18,7 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        Client a = new Client();
+        Client_pizza a = new Client_pizza();
         if (args.length < 1) {
             System.out.println("USO: java App <dd/mm/yyyy>");
             System.exit(1);
